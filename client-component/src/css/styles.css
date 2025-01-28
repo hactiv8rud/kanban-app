@@ -267,9 +267,10 @@ input[type=text], input[type=email], input[type=password], input[type=date]  {
     border-radius: 0.5rem;
     padding-bottom: 0.5rem;
     padding-top: 1rem;
-    height: auto;
+    height: 100%;
     margin-top: 3rem;
     min-width: 13.2rem;
+
     /* margin-right: 0.5rem; */
  }
  
@@ -436,7 +437,7 @@ input[type=text], input[type=email], input[type=password], input[type=date]  {
    border-radius: 0.3rem;
    padding: 0.5rem;
    font-size: 0.8rem;
-   height: 7rem;
+   height: 2rem;
    margin-top: 0;
    background-color: white;
    justify-content: center;

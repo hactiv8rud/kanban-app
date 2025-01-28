@@ -7,7 +7,7 @@
                 loading="lazy">
             Kanban
         </button>
-        <button @click="changePage('main-page')" type="button" class="btn btn-light home-btn">Home</button>
+        <!-- <button @click="changePage('main-page')" type="button" class="btn btn-light home-btn">Home</button> -->
       </div>
       <div class="form-group search-container">
         <select v-model="searchKey.by" class="form-control search-by" name="search-by">

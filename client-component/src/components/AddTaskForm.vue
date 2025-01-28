@@ -54,8 +54,9 @@ export default {
   methods: {
     addTask() {
       this.task.CategoryId = this.CategoryId;
+      console.log(this.task.due_date, "<<<<<<<<<<<<AddtaskComponent");
       axios({
-          url: "https://kanbanrud.herokuapp.com/tasks",
+          url: "http://localhost:3000/tasks",
           method: "POST",
           headers: {
               access_token: localStorage.getItem("access_token")

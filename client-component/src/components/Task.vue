@@ -46,14 +46,18 @@ export default {
           months[11] = "Nov";
           months[12] = "Dec";
 
-      let d = new Date(due_date),	// Convert the passed timestamp to milliseconds
-      mm = ('0' + (d.getMonth() + 1)).slice(-2),	// Months are zero based. Add leading 0.
-      dd = ('0' + d.getDate()).slice(-2),			// Add leading 0.
-      date
-
-      let monthName = months[Number(mm)];
-      date= `${dd} ${monthName}`;
-
+      // let d = new Date(due_date),	// Convert the passed timestamp to milliseconds
+      // yyyy = d.getFullYear(),
+      // mm = ('0' + (d.getMonth() + 1)).slice(-2),	// Months are zero based. Add leading 0.
+      // dd = ('0' + d.getDate()).slice(-2),			// Add leading 0.
+      // date;
+      const [yyyy, mm, dd] = due_date.split("-");
+      const monthName = months[Number(mm)];
+      //remove leading zero
+      
+      const ddArr = dd.split("");
+      let ddFormated = ddArr[0] === "0" ? ddArr[1] : dd;
+      const date= `${ddFormated} ${monthName} ${yyyy}`;
       return date;
     },
     formatUpdatedAt(updatedAt) {
@@ -80,7 +84,7 @@ export default {
       min = ('0' + d.getMinutes()).slice(-2),		// Add leading 0.
       ampm = 'AM',
       time,
-      timeStamp
+      timeStamp;
 
       if (hh > 12) {
           h = hh - 12;
@@ -100,7 +104,7 @@ export default {
     },
     fetchEditData(TaskId) {
       axios({
-          url: `https://kanbanrud.herokuapp.com/tasks/${TaskId}`,
+          url: `http://localhost:3000/tasks/${TaskId}`,
           method: "GET",
           headers: {
               access_token: localStorage.getItem("access_token")

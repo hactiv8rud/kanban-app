@@ -9,11 +9,11 @@
       </div>
     </div>
     <div class="category-content" style="max-height:78vh">
+      <div class="no-task" v-if="!filteredTasksLength"><h6>No Tasks ...</h6></div>
+      <div class="no-task" v-else-if="!filteredSearchLength"><h6>No results from your search ... </h6></div>
       <draggable :id="category.id"
                 v-bind="{group:'tasks'}" @start="drag=true" 
                 @end="drag=false" @add="newTask">
-        <div class="no-task" v-if="!filteredTasksLength"><h6>No Tasks ...</h6></div>
-        <div class="no-task" v-else-if="!filteredSearchLength"><h6>No results from your search ... </h6></div>
         <div v-for="item in filteredSearch"
           :key="item.id">
           <draggable :id="item.id"
@@ -76,7 +76,7 @@ export default {
     },
     fetchEditData(CategoryId) {
       axios({
-          url: `https://kanbanrud.herokuapp.com/categories/${CategoryId}`,
+          url: `http://localhost:3000/categories/${CategoryId}`,
           method: "GET",
           headers: {
               access_token: localStorage.getItem("access_token")
@@ -114,7 +114,7 @@ export default {
     newTask(event) {
       if (this.chosenTaskData.CategoryId !== Number(event.to.id)) {
         axios({
-          url: `https://kanbanrud.herokuapp.com/tasks/${this.chosenTaskData.id}`,
+          url: `http://localhost:3000/tasks/${this.chosenTaskData.id}`,
           method: "PATCH",
           headers: {
               access_token: localStorage.getItem("access_token")
