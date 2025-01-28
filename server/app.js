@@ -9,7 +9,10 @@ const PORT = process.env.PORT || 3000;
 const errorHandler = require("./middlewares/errorHandler");
 const routes = require("./routes");
 
-app.use(cors());
+app.use(cors({ 
+    origin: 'http://localhost:1234',
+    credentials: true,
+}));
 
 app.use(express.urlencoded( { extended: true }));
 app.use(express.json());

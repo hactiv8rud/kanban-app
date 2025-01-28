@@ -21,7 +21,7 @@ class TaskController {
 
     static read(req, res, next) {
         Task.findAll({
-            order: [["updatedAt", "DESC"]],
+            order: [["due_date", "ASC"]],
             include: {
                 model: User
             }
