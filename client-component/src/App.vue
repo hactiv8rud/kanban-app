@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Info @closeShowInfo="info=false"></Info>
     <LoginPage v-if="pageName === 'login-page'" @changePage="changePage"></LoginPage>
     <RegisterPage v-else-if="pageName === 'register-page'" @changePage="changePage"></RegisterPage>
     <!-- <MainPage v-else-if="pageName === 'main-page'" @changePage="changePage" @setTaskId="setTaskId" @setTaskEditData="setTaskEditData"></MainPage> -->
@@ -11,18 +12,20 @@
 import LoginPage from "./components/LoginPage";
 import RegisterPage from "./components/RegisterPage";
 import MainPage from "./components/MainPage";
+import Info from "./components/Info.vue";
 
 export default {
   name: "App",
   data() {
     return {
       pageName: 'login-page',
-      TaskId: 0,
-      taskEditData: {
-        title: "",
-        description: "",
-        due_date: "",
-      }
+      info:true,
+      // TaskId: 0,
+      // taskEditData: {
+      //   title: "",
+      //   description: "",
+      //   due_date: "",
+      // }
     };
   },
   methods: {
@@ -38,17 +41,37 @@ export default {
     //   this.taskEditData.due_date = taskEditData.due_date
     // }
   },
+  watch: {
+    info: function () {
+      this.$nextTick()
+      .then(() => {
+        if (this.info) {
+        $("#info-modal").modal("show");
+        } else if(!this.info) {
+          $("#info-modal").modal("hide");
+          $('body').removeClass('modal-open');
+          $('.modal-backdrop').remove();
+        }
+      })
+    }
+  },
   components: {
     LoginPage,
     RegisterPage,
-    MainPage
+    MainPage,
+    Info
   },
   created() {
     if (localStorage.getItem("access_token")) {
         this.pageName = "main-page";
     } else {
-        this.pageName = "login-page"
+        this.pageName = "login-page";
+        $("#info-modal").modal("show");
     }
+  },
+  mounted() {
+    if (!localStorage.getItem("access_token"))
+      $("#info-modal").modal("show");
   }
 };
 </script>

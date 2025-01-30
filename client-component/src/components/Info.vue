@@ -4,7 +4,7 @@
        <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" style="font-weight:bold" id="exampleModalLongTitle">Welcome to Fancytodo!</h5>
+              <h5 class="modal-title" style="font-weight:bold" id="exampleModalLongTitle">Welcome to Kanban!</h5>
               <button type="button" @click="$emit('close-show-info')" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -108,9 +108,9 @@
                     <h2>P.S.</h2>
                     <ul>
                       <li>Accessing this website in the desktop version is recommended for better user experience with draggable tasks.</li>
-                      <li>Simple authentication is used for the purpose of prototyping, where the access token and full name are stored in local storage.
-                        Please check out the "Fancytodo" project which has implemented more advanced authentication with secure access token, csrf token and refresh token.
-                      </li>
+                      <li>Simple authentication is used for the purpose of prototyping, where the access token and full name are stored in the local storage.</li>
+                      <li>Please check out the "Fancytodo" project which has implemented more advanced authentication with secure access token, csrf token and refresh token.</li>
+                      <li><a href="https://github.com/rdport/fancytodo-client">Fancytodo-client on github</a>, <a href="https://github.com/rdport/fancytodo-server">Fancytodo-server on github</a>, <a href="https://fancytodo-client.onrender.com">Fancytodo website</a></li>
                       <li>The frontend, backend and database of this project are using free tier services so this website might not be always accessible.</li>
                     </ul>
                 </div>
