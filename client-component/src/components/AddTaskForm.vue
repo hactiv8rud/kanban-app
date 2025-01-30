@@ -56,8 +56,9 @@ export default {
       this.task.CategoryId = this.CategoryId;
       console.log(this.task.due_date, "<<<<<<<<<<<<AddtaskComponent");
       axios({
-          url: "http://localhost:3000/tasks",
+          url: "http://localhost:3000/tasks/add",
           method: "POST",
+          withCredentials: true,
           headers: {
               access_token: localStorage.getItem("access_token")
           },

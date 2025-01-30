@@ -42,6 +42,7 @@ export default {
       axios({
           url: `http://localhost:3000/tasks/${this.TaskId}`,
           method: "DELETE",
+          withCredentials: true,
           headers: {
               access_token: localStorage.getItem("access_token")
           },

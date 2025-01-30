@@ -9,8 +9,8 @@
       </div>
     </div>
     <div class="category-content" style="max-height:78vh">
-      <div class="no-task" v-if="!filteredTasksLength"><h6>No Tasks ...</h6></div>
-      <div class="no-task" v-else-if="!filteredSearchLength"><h6>No results from your search ... </h6></div>
+      <div class="no-task-container" v-if="!filteredTasksLength"><p class="no-task">No Tasks ...</p></div>
+      <div class="no-task-container" v-else-if="!filteredSearchLength"><p class="no-task">No results from your search ... </p></div>
       <draggable :id="category.id"
                 v-bind="{group:'tasks'}" @start="drag=true" 
                 @end="drag=false" @add="newTask">
@@ -58,7 +58,7 @@ export default {
     },
     showEditCatForm(CategoryId) {
       this.fetchEditData(CategoryId);
-      this.$emit("show-edit-category-form");
+      // this.$emit("show-edit-category-form");
       this.$emit("setCategoryId", CategoryId);
     },
     showDelCatConfirm(CategoryId) {
@@ -77,7 +77,8 @@ export default {
     fetchEditData(CategoryId) {
       axios({
           url: `http://localhost:3000/categories/${CategoryId}`,
-          method: "GET",
+          method: "POST",
+          withCredentials: true,
           headers: {
               access_token: localStorage.getItem("access_token")
           }
@@ -86,6 +87,7 @@ export default {
           this.categoryEditData.name = data.name;
           this.categoryEditData.color = data.color;
           this.$emit("setCategoryEditData", this.categoryEditData);
+          this.$emit("show-edit-category-form");
       })
       .catch((err) => {
           console.log(err);
@@ -116,6 +118,7 @@ export default {
         axios({
           url: `http://localhost:3000/tasks/${this.chosenTaskData.id}`,
           method: "PATCH",
+          withCredentials: true,
           headers: {
               access_token: localStorage.getItem("access_token")
           },

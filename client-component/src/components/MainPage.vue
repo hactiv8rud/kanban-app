@@ -6,7 +6,8 @@
             <NavBar
               @changePage="changePage"
               @setSearchKey="setSearchKey"
-              @show-add-category-form="addCategoryForm = true">
+              @show-add-category-form="addCategoryForm = true"
+              @show-info="info = true">
             </NavBar>
             <Category
               v-for="item in categories"
@@ -75,6 +76,10 @@
               @fetchCategories="fetchCategories"
               @fetchTasks="fetchTasks">
             </DeleteTaskConfirmation>
+            <Info
+              v-if="info"
+              @close-show-info="info = false">
+            </Info>
           </div>
       </div>
     </div>
@@ -90,6 +95,7 @@ import TaskDetails from "./TaskDetails";
 import EditCategoryForm from "./EditCategoryForm";
 import DeleteCategoryConfirmation from "./DeleteCategoryConfirmation";
 import DeleteTaskConfirmation from "./DeleteTaskConfirmation";
+import Info from './Info.vue';
 import draggable from "vuedraggable";
 
 export default {
@@ -109,6 +115,7 @@ export default {
       editCategoryForm: false,
       deleteCategoryConfirmation: false,
       deleteTaskConfirmation: false,
+      info:false,
       chosenTaskData: {}
     }
   },
@@ -119,7 +126,8 @@ export default {
     fetchCategories() {
       axios({
         url: `http://localhost:3000/categories`,
-        method: "GET",
+        method: "POST",
+        withCredentials: true,
         headers: {
             access_token: localStorage.getItem("access_token")
         }
@@ -134,7 +142,8 @@ export default {
     fetchTasks() {
       axios({
           url: `http://localhost:3000/tasks`,
-          method: "GET",
+          method: "POST",
+          withCredentials: true,
           headers: {
               access_token: localStorage.getItem("access_token")
           }
@@ -250,6 +259,18 @@ export default {
           }
         }
       })
+    },
+    info: function () {
+      this.$nextTick()
+      .then(() => {
+        if (this.info) {
+        $("#info-modal").modal("show");
+        } else if(!this.info) {
+          $("#info-modal").modal("hide");
+          $('body').removeClass('modal-open');
+          $('.modal-backdrop').remove();
+        }
+      })
     }
   },
   components: {
@@ -261,6 +282,7 @@ export default {
     EditCategoryForm,
     DeleteCategoryConfirmation,
     DeleteTaskConfirmation,
+    Info,
     draggable
   },
   created() {

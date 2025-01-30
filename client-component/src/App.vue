@@ -2,7 +2,8 @@
   <div>
     <LoginPage v-if="pageName === 'login-page'" @changePage="changePage"></LoginPage>
     <RegisterPage v-else-if="pageName === 'register-page'" @changePage="changePage"></RegisterPage>
-    <MainPage v-else-if="pageName === 'main-page'" @changePage="changePage" @setTaskId="setTaskId" @setTaskEditData="setTaskEditData"></MainPage>
+    <!-- <MainPage v-else-if="pageName === 'main-page'" @changePage="changePage" @setTaskId="setTaskId" @setTaskEditData="setTaskEditData"></MainPage> -->
+    <MainPage v-else-if="pageName === 'main-page'" @changePage="changePage"></MainPage>
   </div>
 </template>
 
@@ -28,14 +29,14 @@ export default {
     changePage(pageName) {
       this.pageName = pageName;
     },
-    setTaskId(TaskId) {
-      this.TaskId = TaskId
-    },
-    setTaskEditData(taskEditData) {
-      this.taskEditData.title = taskEditData.title,
-      this.taskEditData.description = taskEditData.description,
-      this.taskEditData.due_date = taskEditData.due_date
-    }
+    // setTaskId(TaskId) {
+    //   this.TaskId = TaskId
+    // },
+    // setTaskEditData(taskEditData) {
+    //   this.taskEditData.title = taskEditData.title,
+    //   this.taskEditData.description = taskEditData.description,
+    //   this.taskEditData.due_date = taskEditData.due_date
+    // }
   },
   components: {
     LoginPage,

@@ -17,6 +17,7 @@ app.use(cors({
 app.use(express.urlencoded( { extended: true }));
 app.use(express.json());
 
+app.options('*', cors());
 app.use(routes);
 
 app.use(errorHandler);

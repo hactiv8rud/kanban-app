@@ -1,9 +1,9 @@
 const route = require("express").Router();
 const CategoryController = require("../controllers/CategoryController");
 
-route.post("/", CategoryController.add);
-route.get("/", CategoryController.read);
-route.get("/:id", CategoryController.findByPk);
+route.post("/", CategoryController.read);
+route.post("/add", CategoryController.add);
+route.post("/:id", CategoryController.findByPk);
 route.put("/:id", CategoryController.put);
 route.delete("/:id", CategoryController.delete);
 

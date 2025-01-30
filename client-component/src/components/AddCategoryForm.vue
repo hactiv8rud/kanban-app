@@ -58,8 +58,9 @@ export default {
   methods: {
     addCategory() {
       axios({
-          url: "http://localhost:3000/categories",
+          url: "http://localhost:3000/categories/add",
           method: "POST",
+          withCredentials: true,
           headers: {
               access_token: localStorage.getItem("access_token")
           },

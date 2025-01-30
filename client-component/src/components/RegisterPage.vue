@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="error">
+    <div id="notification-container" sv-if="error">
           <ErrorMessage v-for="(message, index) in messages" :key="index" :message="message" ref="error"></ErrorMessage>
     </div>
      <div id="register-page">
@@ -8,9 +8,9 @@
                 <div class="register-image-container">
                     <img src="../assets/kanban-logo.svg" alt="kanban board" width="250">
                 </div>
-                <div class="form-container">
+                <div class="form-container-register">
                     <div class="register-form-title">
-                        <h1>Kanban</h1>
+                      <img src="../assets/Kanban.svg" width="230">
                     </div>
                     <form @submit.prevent="register" id="register-form">
                         <div class="form-group">
@@ -38,6 +38,12 @@
                             <button @click="changePage('login-page')" type="button" class="btn mt-2" id="register-cancel-btn">Cancel</button>
                         </div>
                     </form>
+                    <img class="users-img-reg" src="../assets/users.svg" width="">
+                    <img class="planner-img" src="../assets/planner1.svg" width="">
+                    <img class="talk2-img" src="../assets/talk2.svg" width="">
+                    <img class="talk3-img-reg" src="../assets/talk3.svg" width="">
+                    <img class="talk4-img" src="../assets/talk4.svg" width="">
+                    <img class="talk1-img-reg" src="../assets/talk1.svg" width="">
                 </div>
             </div>
         </div>
@@ -65,6 +71,7 @@ export default {
       axios({
         url: "http://localhost:3000/register",
         method: "POST",
+        withCredentials: true,
         data: this.userRegister
       })
       .then(({data}) => {
@@ -76,7 +83,7 @@ export default {
           );
       })
       .catch((err) => {
-          console.log(err);
+          console.log(err.response.data.messages);
           this.messages = err.response.data.messages;
           this.error = true;
           this.$nextTick(()=> {

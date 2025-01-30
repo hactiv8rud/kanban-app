@@ -105,7 +105,8 @@ export default {
     fetchEditData(TaskId) {
       axios({
           url: `http://localhost:3000/tasks/${TaskId}`,
-          method: "GET",
+          method: "POST",
+          withCredentials: true,
           headers: {
               access_token: localStorage.getItem("access_token")
           }
