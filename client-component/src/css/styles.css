@@ -200,7 +200,7 @@ input[type=text], input[type=email], input[type=password], input[type=date]  {
 #btn-logout-right {
    border: solid black 0.1rem;
    display: flex;
-   display: none;/
+   display: none;
 }
 
 #board-content {
