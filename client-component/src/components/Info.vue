@@ -95,11 +95,13 @@
                   </div>
                 </div>
                 <div class="description">
+                  <p>A web application for managing tasks and workflow.</p>
                   <h2>Features</h2>
                     <ul>
                         <li>Register and sign in with email</li>
-                        <li>Create categories with custom colors</li>
-                        <li>Add tasks with title, description and due date</li>
+                        <li>Create, edit and delete categories with custom colors</li>
+                        <li>Create, edit and delete tasks with title, description and due date</li>
+                        <li>Filter tasks by username, title and due date</li>
                         <li>Multiple users can use the board</li>
                         <li>The task can only be edited and deleted by the task owner</li>
                         <li>Draggable from one category to another</li>
