@@ -95,7 +95,13 @@
                   </div>
                 </div>
                 <div class="description">
+                  <h2>Description</h2>
                   <p>A web application for managing tasks and workflow.</p>
+                  <h2>Github</h2>
+                  <ul>
+                      <li><a href='https://github.com/rdport/kanban-client.git'>kanban-client</a></li>
+                      <li><a href='https://github.com/rdport/kanban-server.git'>kanban-server</a></li>
+                  </ul>
                   <h2>Features</h2>
                     <ul>
                         <li>Register and sign in with email</li>
