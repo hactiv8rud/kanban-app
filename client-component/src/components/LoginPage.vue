@@ -1,10 +1,15 @@
 <template>
   <div>
-    <div id="notification-container" v-if="error">
+    <div id="notification-container" v-if="error && !loading">
           <ErrorMessage :message="message" ref="error"></ErrorMessage>
     </div>
+    <div v-if="loading" class="">
+      <div id="loadingMask" class="center-viewport" style="background: #fff;">
+        <img class="img-fluid" src="../assets/loading-spinning-orange.gif">
+      </div>
+    </div>
     <div id="login-page" class="">
-        <div class="register-login-content center-viewport">
+        <div v-if ="!loading" class="register-login-content center-viewport">
             <div class="login-image-container">
                 <img class="kanban-logo-login" src="../assets/kanban-logo.svg" alt="kanban board" width="250">
             </div>
@@ -54,6 +59,7 @@ export default {
         password: ""
       },
       error: false,
+      loading: false,
       message: "",
       // params: {
       //     client_id:
@@ -65,35 +71,38 @@ export default {
   },
   methods: {
     login(){
-      axios({
-        url: "http://localhost:3000/login",
-        method: "POST",
-        withCredentials: true,
-        data: this.userLogin
+      this.loading = true;
+      // axios({
+      //   url: "http://localhost:3000/login",
+      //   method: "POST",
+      //   withCredentials: true,
+      //   data: this.userLogin
         
-      })
-      .then(({data}) => {
-          localStorage.setItem("access_token", data.access_token);
-          localStorage.setItem("fullName", data.fullName);
-          this.changePage("main-page");
-          Swal.fire(
-              'Logged In!',
-              "Welcome!",
-              'success'
-          );
-      })
-      .catch((err) => {
-          console.log(err);
-          this.message = err.response.data.message;
-          this.error = true;
-          this.$nextTick(()=> {
-             this.$refs.error.$el.scrollIntoView();
-          });
-      })
-      .finally(() => {
-          this.userLogin.email = "";
-          this.userLogin.password = "";
-      });
+      // })
+      // .then(({data}) => {
+      //     localStorage.setItem("access_token", data.access_token);
+      //     localStorage.setItem("fullName", data.fullName);
+      //     this.changePage("main-page");
+      //     Swal.fire(
+      //         'Logged In!',
+      //         "Welcome!",
+      //         'success'
+      //     );
+      //     this.loading = false;
+      // })
+      // .catch((err) => {
+      //     this.loading = false;
+      //     console.log(err);
+      //     this.message = err.response.data.message;
+      //     this.error = true;
+      //     this.$nextTick(()=> {
+      //        this.$refs.error.$el.scrollIntoView();
+      //     });
+      // })
+      // .finally(() => {
+      //     this.userLogin.email = "";
+      //     this.userLogin.password = "";
+      // });
     },
     // handleCredentialResponse(googleUser) {
     //   var googleToken = googleUser.getAuthResponse().id_token;
